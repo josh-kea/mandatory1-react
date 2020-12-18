@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
+import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai';
 
  const App = () => {
   const [todos, setTodos] = useState([]);
@@ -82,7 +84,7 @@ import axios from 'axios';
       <ul>
         { todos.map((todo, i) => {
           return (
-            <li key={i}>{todo.name} | Completed: {todo.completed? "Yes": "No"} <button onClick={() => handleClick(todo) }>Update</button><button onClick={() => handleDelete(todo) }>Delete</button></li>
+            <li key={i}>{todo.name} | Completed: {todo.completed? "Yes": "No"} {todo.completed? <AiOutlineCheckCircle/>: <AiOutlineClose/>} <button onClick={() => handleClick(todo) }>Update</button><button onClick={() => handleDelete(todo) }>Delete</button><Link to={`/todo/${todo.id}`}>View</Link></li>
           )
         })}
     </ul>
