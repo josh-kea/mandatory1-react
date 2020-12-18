@@ -1,15 +1,32 @@
 const express = require('express');
-const compression = require('compression');
 const path = require('path');
 
 const app = express();
 
-app.use(compression());
-app.use(express.static(path.join(__dirname, 'build')))
+// defining routes here, instead of routes folder
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
-})
+const Todos = [
+    {
+        name: 'My first todo',
+        id: 0,
+        createdAt: 'Now',
+        completed: 'no'
+    }
+]
+
+
+app.get("/todos", (req, res) => {
+    res.send(Todos)
+    console.log(Todos)
+
+});
+app.put("/todos/:id", (req, res) => {
+    const id = req.params.id;
+    res.send(id)
+    console.log(id)
+
+    
+});
 
 const PORT = process.env.PORT || 3000
 
