@@ -1,22 +1,27 @@
 import './App.css';
-import LightSwitch from './components/LightSwitch/LightSwitch';
-import { useState } from 'react';
-import Bored from './components/Bored.js/Bored';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [todos, setTodos] = useState([]);
 
-  function handleLightChanged(lightSwitchState) {
-    const newBackgroundColor = lightSwitchState === "OFF" ? "black" : "white";
-    setBackgroundColor(newBackgroundColor);
+  async function fetchTodos() {
+    const response = await fetch(`http:/localhost:8000/todos`);
+    const result = await response.json();
+    
+    console.log(result)
+    setTodos(result);
   }
 
+  useEffect(() => {
+    fetchTodos();
+  }, [])
+
   return (
-    <div className="App" style={{backgroundColor}}>
-      <LightSwitch onLightChanged={handleLightChanged}></LightSwitch>
-      <Bored />
+    <div className="App" style={{}}>
+      {JSON.stringify(todos)}
     </div>
   );
+
 }
 
 export default App;
