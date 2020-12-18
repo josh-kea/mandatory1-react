@@ -84,7 +84,7 @@ import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai';
       <ul>
         { todos.map((todo, i) => {
           return (
-            <li key={i}>{todo.name} | Completed: {todo.completed? "Yes": "No"} {todo.completed? <AiOutlineCheckCircle/>: <AiOutlineClose/>} <button onClick={() => handleClick(todo) }>Update</button><button onClick={() => handleDelete(todo) }>Delete</button><Link to={`/todo/${todo.id}`}>View</Link></li>
+            <li key={i} style={{ display: 'flex', justifyContent: 'space-evenly', maxWidth: '700px', margin: '0 auto'}}>{todo.name} | Completed: {todo.completed? "Yes": "No"} {todo.completed? <AiOutlineCheckCircle/>: <AiOutlineClose/>} <button onClick={() => handleClick(todo) }>Update</button><button onClick={() => handleDelete(todo) }>Delete</button><Link to={`/todo/${todo.id}`}>View</Link></li>
           )
         })}
     </ul>
